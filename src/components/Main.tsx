@@ -31,25 +31,46 @@ const ResultLayout = styled.div`
 `
 
 export const Main = () => {
+    const searchForErrors = (): boolean => {
+        let errorsFound = false;
+        for (const player of players) {
+            if (player.nick.length === 0) {
+                errorsFound = true;
+                player.error = "Nazwa nie może być pusta";
+            } else if (players.filter(e => e.nick === player.nick).length > 1) {
+                errorsFound = true;
+                player.error = "Nazwa nie jest unikalna!"
+            } else {
+                player.error = undefined;
+            }
+        }
+        return errorsFound;
+    }
+
     const handleChange = (players: Player[], playerId: number, newName: string) => {
+        if (newName.length > 17) return;
         const copiedPlayers = [...players];
         const player = copiedPlayers[playerId];
+        
         player.nick = newName;
         copiedPlayers[playerId] = player;
         setPlayers(copiedPlayers);
+        
+        if (submitted) {
+            searchForErrors();
+        }
     }
 
     const assignPlayers = () => {
-        for(const player of players) {
-            if (player.nick.length === 0) {
-                setErrorState(true);
-                return;
+        if (!searchForErrors()) {
+            setLoadingState(true);
+            setResult(splitPlayers(players));
+            setLoadingState(false);
+        } else {
+            if (!submitted) {
+                setSubmitStatus(true);
             }
         }
-
-        setLoadingState(true);
-        setResult(splitPlayers(players));
-        setLoadingState(false);
     }
 
     // initial state; creates 10 players with empty nicks
@@ -66,7 +87,7 @@ export const Main = () => {
     } | undefined>(undefined);
 
     const [isLoading, setLoadingState] = useState<boolean>(false);
-    const [error, setErrorState] = useState<boolean>(false);
+    const [submitted, setSubmitStatus] = useState<boolean>(false);
 
     return (
         <Root>
@@ -75,7 +96,7 @@ export const Main = () => {
                     <PlayerTab
                         key={player.id}
                         player={player}
-                        error={error}
+                        error={player.error}
                         onChange={e =>
                             handleChange(players, player.id, e.target.value)}
                     />)
@@ -86,9 +107,9 @@ export const Main = () => {
                 </ButtonPane>
             </PlayerLayout>
             { isLoading
-                ? <span style={{color: "white"}}>Tworzenie drużyn...</span>
+                ? <span style={{ color: "white" }}>Tworzenie drużyn...</span>
                 : result && <ResultLayout>
-                    <ResultTab teams={result}/>
+                    <ResultTab teams={result} />
                 </ResultLayout>
             }
         </Root>

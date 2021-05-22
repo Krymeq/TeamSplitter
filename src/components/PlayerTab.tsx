@@ -17,7 +17,7 @@ const Span = styled.span`
 
 interface Props {
     player: Player;
-    error: boolean;
+    error: string | undefined;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,7 +29,7 @@ export const PlayerTab = ({ player, error, onChange }: Props) => {
                 text={player.nick}
                 onChange={onChange}
                 hint="Podaj nick"
-                error={ player.nick.length === 0 && error }
+                error={error}
             />
         </Root>
     );

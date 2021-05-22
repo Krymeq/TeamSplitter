@@ -37,7 +37,9 @@ export const Main = () => {
             if (player.nick.length === 0) {
                 errorsFound = true;
                 player.error = "Nazwa nie może być pusta";
-            } else if (players.filter(e => e.nick === player.nick).length > 1) {
+            } else if (players
+                .filter(e => e.nick.trim() === player.nick.trim())
+                .length > 1) {
                 errorsFound = true;
                 player.error = "Nazwa nie jest unikalna!"
             } else {
@@ -51,11 +53,11 @@ export const Main = () => {
         if (newName.length > 17) return;
         const copiedPlayers = [...players];
         const player = copiedPlayers[playerId];
-        
+
         player.nick = newName;
         copiedPlayers[playerId] = player;
         setPlayers(copiedPlayers);
-        
+
         if (submitted) {
             searchForErrors();
         }

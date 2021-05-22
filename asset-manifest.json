@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/teamassembler/static/css/main.f470a751.chunk.css",
+    "main.js": "/teamassembler/static/js/main.7a0ac6ca.chunk.js",
+    "main.js.map": "/teamassembler/static/js/main.7a0ac6ca.chunk.js.map",
+    "runtime-main.js": "/teamassembler/static/js/runtime-main.c15c691d.js",
+    "runtime-main.js.map": "/teamassembler/static/js/runtime-main.c15c691d.js.map",
+    "static/js/2.7372e7ff.chunk.js": "/teamassembler/static/js/2.7372e7ff.chunk.js",
+    "static/js/2.7372e7ff.chunk.js.map": "/teamassembler/static/js/2.7372e7ff.chunk.js.map",
+    "static/js/3.fd91c7b3.chunk.js": "/teamassembler/static/js/3.fd91c7b3.chunk.js",
+    "static/js/3.fd91c7b3.chunk.js.map": "/teamassembler/static/js/3.fd91c7b3.chunk.js.map",
+    "index.html": "/teamassembler/index.html",
+    "static/css/main.f470a751.chunk.css.map": "/teamassembler/static/css/main.f470a751.chunk.css.map",
+    "static/js/2.7372e7ff.chunk.js.LICENSE.txt": "/teamassembler/static/js/2.7372e7ff.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c15c691d.js",
+    "static/js/2.7372e7ff.chunk.js",
+    "static/css/main.f470a751.chunk.css",
+    "static/js/main.7a0ac6ca.chunk.js"
+  ]
+}

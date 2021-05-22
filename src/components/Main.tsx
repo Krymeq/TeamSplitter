@@ -31,6 +31,17 @@ const ResultLayout = styled.div`
 `
 
 export const Main = () => {
+    const purge = () => {
+        setResult(undefined);
+        setSubmitStatus(false);
+        setLoadingState(false);
+        setPlayers(Array.from({ length: 10 },
+            (_, idx) => {
+                return { id: idx, nick: "" }
+            }
+        ));
+    }
+
     const searchForErrors = (): boolean => {
         let errorsFound = false;
         for (const player of players) {
@@ -68,10 +79,10 @@ export const Main = () => {
             setLoadingState(true);
             setResult(splitPlayers(players));
             setLoadingState(false);
-        } else {
-            if (!submitted) {
-                setSubmitStatus(true);
-            }
+        }
+        
+        if (!submitted) {
+            setSubmitStatus(true);
         }
     }
 
@@ -105,7 +116,7 @@ export const Main = () => {
                 }
                 <ButtonPane>
                     <Button onClick={assignPlayers} text="Podziel" />
-                    <Button onClick={() => setResult(undefined)} text="Wyczyść" />
+                    <Button onClick={purge} text="Wyczyść" />
                 </ButtonPane>
             </PlayerLayout>
             { isLoading

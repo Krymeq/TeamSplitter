@@ -10,6 +10,10 @@ import { splitPlayers } from "../utils/split-teams";
 const Root = styled.div`
     display: flex;
     justify-content: center;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 const PlayerLayout = styled.div`
